@@ -6,14 +6,14 @@
 /*   By: roo <roo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 21:11:08 by roo               #+#    #+#             */
-/*   Updated: 2024/10/27 17:05:49 by roo              ###   ########.fr       */
+/*   Updated: 2024/10/28 19:58:01 by roo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft/libft.h"
+# include "Libft/libft.h"
 
 int	ft_printf(char const *str, ...);
 
