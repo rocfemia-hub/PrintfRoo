@@ -6,7 +6,7 @@
 /*   By: roo <roo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 19:54:56 by roo               #+#    #+#             */
-/*   Updated: 2024/10/28 20:59:53 by roo              ###   ########.fr       */
+/*   Updated: 2024/10/29 17:14:49 by roo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ static void ft_conversions(va_list vargs, int i)
     else if (i == 's')
         ft_putstr_fd(va_arg(vargs, char *), 1);
     else if (i == 'p')
+    //('nil')
     else if (i == 'i' || i == 'd')
-        ft_putnbr_fd(va_arg(vargs, int), 1)
+        ft_putnbr_fd(va_arg(vargs, int), 1);
     else if (i == 'u')
     else if (i == 'x')
         ft_printf_x(va_arg(vargs, unsigned int), 1);
