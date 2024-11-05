@@ -6,13 +6,13 @@
 /*   By: roo <roo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:38:13 by roo               #+#    #+#             */
-/*   Updated: 2024/11/04 16:31:30 by roo              ###   ########.fr       */
+/*   Updated: 2024/11/04 23:28:20 by roo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printf_x(unsigned int n, int fd)
+void	ft_printf_x(unsigned long long n, int fd)
 {
 	if (n >= 16)
 	{
@@ -69,5 +69,38 @@ int main()
 }*/
 void	ft_printf_u(unsigned int n, int fd)
 {
-    
+	if (n > 9)
+	{
+		ft_printf_u((n / 10), fd);
+		ft_printf_u((n % 10), fd);
+	}
+	else
+		ft_putchar_fd((n + '0'), fd);
 }
+/*#include <stdio.h>
+int main()
+{
+    ft_printf_u(429496, 1);
+    printf("\n%u\n", 429496);
+    return (0);
+}*/
+void ft_printf_p(void *p, int fd)
+{
+    unsigned long long i;
+    
+    i = (unsigned long long)p;
+    if (i == 0)
+    {
+        ft_putstr_fd("(nil)", 1);
+        return (0);
+    }
+    ft_putstr_fd("0x", fd);
+    ft_printf_x(i, fd);
+}
+/*#include <stdio.h>
+int main()
+{
+    ft_printf_p(0, 1);
+    printf("\n%p\n", 0);
+    return (0);
+}*/
