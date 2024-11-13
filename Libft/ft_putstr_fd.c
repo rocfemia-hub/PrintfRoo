@@ -6,34 +6,49 @@
 /*   By: roo <roo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:43:30 by rocfemia          #+#    #+#             */
-/*   Updated: 2024/11/05 00:18:25 by roo              ###   ########.fr       */
+/*   Updated: 2024/11/13 16:33:17 by roo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int    ft_putstr_fd(char *s, int fd, int result)
 {
-	int	i;
-
-	if (s == NULL)//creo que puedes poner 0 o NULL
+	if (s == NULL)
 	{
-		ft_putstr_fd("(null)", fd);
+		result = result + write(1, "(null)", 6);
+		//result = ft_strlen(s);
+		return(result);
 	}
-	i = 0;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-	//write(fd, s, ft_strlen(s));//esto es lo mismo
+	result = result + write(fd, s, ft_strlen(s));
+	//result = ft_strlen(s);
+	return(result);
 }
-#include <fcntl.h>
+/*#include <stdio.h>
+int main() 
+{
+    int result = 0;
+
+    char *str1 = "Hello, world!";
+    result = ft_putstr_fd(str1, 1, result);
+    printf("\nBytes escritos hasta ahora: %d\n", result);
+
+    char *str2 = NULL;
+    result = ft_putstr_fd(str2, 1, result);
+    printf("\nBytes escritos hasta ahora: %d\n", result);
+
+    char *str3 = "Another test!";
+    result = ft_putstr_fd(str3, 1, result);
+    printf("\nBytes escritos hasta ahora: %d\n", result);
+
+    return 0;
+}*/
+/*#include <fcntl.h>
 #include <stdio.h>
 int	main(void)
 {
-//	char str[] = 0;
-	ft_putstr_fd(0, 1);
-	printf("\n%s\n", 0);
+	char *str = "patata";
+	ft_putstr_fd(str, 1, 0);
+	printf("\n%s\n", "patata");
 	return(0);
-}
+}*/
