@@ -6,30 +6,31 @@
 /*   By: roo <roo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 19:54:56 by roo               #+#    #+#             */
-/*   Updated: 2024/11/04 23:28:13 by roo              ###   ########.fr       */
+/*   Updated: 2024/11/13 19:01:14 by roo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 //una función solo para saber que tipo de coversión es (saber que tipo de variable estás retornando)
-static void ft_conversions(va_list vargs, int i)
+int ft_conversions(va_list vargs, int i, int result)
 {
     if (i == 'c')
-        ft_putchar_fd(va_arg(vargs, char), 1);
+        result = ft_putchar_fd(va_arg(vargs, int), 1, result); //xq es un int??
     else if (i == 's')
-        ft_putstr_fd(va_arg(vargs, char *), 1);
+        result = ft_putstr_fd(va_arg(vargs, char *), 1, result);
     else if (i == 'p')
-        ft_printf_p(va_arg(vargs, void *), 1);
+        result = ft_printf_p(va_arg(vargs, void *), 1, result);
     else if (i == 'i' || i == 'd')
-        ft_putnbr_fd(va_arg(vargs, int), 1);
+        result = ft_putnbr_fd(va_arg(vargs, int), 1, result);
     else if (i == 'u')
-        ft_printf_u(va_arg(vargs, unsigned int), 1);
+        result = ft_printf_u(va_arg(vargs, unsigned int), 1, result);
     else if (i == 'x')
-        ft_printf_x(va_arg(vargs, unsigned int), 1);
+        result = ft_printf_x(va_arg(vargs, unsigned int), 1, result);
     else if (i == 'X')
-        ft_printf_super_x(va_args(vargs, unsigned int), 1);
+        result = ft_printf_super_x(va_arg(vargs, unsigned int), 1, result);
     else if (i == '%')
-        ft_putchar_fd('%', 1);
+        result = ft_putchar_fd('%', 1, result);
+    return (result);
 }
 int ft_printf(char const *str, ...)
 {
@@ -38,21 +39,22 @@ int ft_printf(char const *str, ...)
     int result;
     
     i = 0;
+    result = 0;
     va_start(vargs, str);
+    
     while (str[i] != '\0')
     {
         if (str[i] == '%')
         {
             i++;
-            ft_conversions(vargs, i);
+            result = ft_conversions(vargs, str[i], result);
         }
         else
         {
-            ft_putchar_fd(str[i], 1);
+            result = ft_putchar_fd(str[i], 1, result);
         }
         i++;
     }
-    va_arg(vargs, )
     va_end(vargs);
     return (result);
 }

@@ -6,18 +6,18 @@
 /*   By: roo <roo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:38:13 by roo               #+#    #+#             */
-/*   Updated: 2024/11/13 18:04:22 by roo              ###   ########.fr       */
+/*   Updated: 2024/11/13 18:54:44 by roo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printf_x(unsigned long long n, int fd)
+int	ft_printf_x(unsigned long long n, int fd, int result)
 {
 	if (n >= 16)
 	{
-		ft_printf_x((n / 16), fd);
-		ft_printf_x((n % 16), fd);
+		result = ft_printf_x((n / 16), 1, result);
+		result = ft_printf_x((n % 16), 1, result);
 	}
     else
     {
@@ -29,23 +29,26 @@ void	ft_printf_x(unsigned long long n, int fd)
         {
             n = n + 87;
         }
-	    ft_putchar_fd(n, fd);
+	    result = ft_putchar_fd(n, 1, result);
     }
+    return (result);
 }
-/* #include <stdio.h>
+/*#include <stdio.h>
 int main ()
 {
-    ft_printf_x(16, 1);
+    ft_printf_x(16, 1, 0);
     printf("\n%x\n", 16);
     return(0);
-} */
+}*/
 
-void    ft_printf_super_x(unsigned int n, int fd)
+
+
+int    ft_printf_super_x(unsigned int n, int fd, int result)
 {
     if (n >= 16)
     {
-        ft_printf_super_x ((n / 16), fd);
-        ft_printf_super_x ((n % 16), fd);
+        result = ft_printf_super_x ((n / 16), 1, result);
+        result = ft_printf_super_x ((n % 16), 1, result);
     }
     else
     {
@@ -57,50 +60,60 @@ void    ft_printf_super_x(unsigned int n, int fd)
         {
             n = n + 55;
         }
-        ft_putchar_fd(n, fd);
+        result = ft_putchar_fd(n, 1, result);
     }
+    return (result);
 }
 /*#include <stdio.h>
 int main()
 {
-    ft_printf_super_x(20, 1);
+    ft_printf_super_x(20, 1, 0);
     printf("\n%X\n", 20);
     return (0);
 }*/
-void	ft_printf_u(unsigned int n, int fd)
+
+
+
+int	ft_printf_u(unsigned int n, int fd, int result)
 {
 	if (n > 9)
 	{
-		ft_printf_u((n / 10), fd);
-		ft_printf_u((n % 10), fd);
+		result = ft_printf_u((n / 10), 1, result);
+		result = ft_printf_u((n % 10), 1, result);
 	}
 	else
-		ft_putchar_fd((n + '0'), fd);
+		result = ft_putchar_fd((n + '0'), 1, result);
+    return (result);
 }
 /*#include <stdio.h>
 int main()
 {
-    ft_printf_u(429496, 1);
+    ft_printf_u(429496, 1, 0);
     printf("\n%u\n", 429496);
     return (0);
 }*/
-void ft_printf_p(void *p, int fd)
+
+
+
+int ft_printf_p(void *p, int fd, int result)
 {
     unsigned long long i;
     
     i = (unsigned long long)p;
     if (i == 0)
     {
-        ft_putstr_fd("(nil)", 1);
+        result = ft_putstr_fd("(nil)", 1, result);
         return (0);
     }
-    ft_putstr_fd("0x", fd);
-    ft_printf_x(i, fd);
+    result = ft_putstr_fd("0x", 1, result);
+    result = ft_printf_x(i, 1, result);
+    return (result);
 }
 /*#include <stdio.h>
 int main()
 {
-    ft_printf_p(0, 1);
-    printf("\n%p\n", 0);
+    void *p = "patata";
+    ft_printf_p(p, 1, 0);
+    printf("\n%p\n", p);
     return (0);
 }*/
