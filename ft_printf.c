@@ -6,7 +6,7 @@
 /*   By: roo <roo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 19:54:56 by roo               #+#    #+#             */
-/*   Updated: 2024/11/13 19:01:14 by roo              ###   ########.fr       */
+/*   Updated: 2024/11/14 15:42:12 by roo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ int main ()
     
     result = ft_printf("Patata %s\n", "Frita");
     ft_printf("%d\n", "El total de letas es: %d\n", result);
+    return (0);
 }
