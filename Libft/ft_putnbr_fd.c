@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roo <roo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rocfemia <rocfemia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 03:01:35 by roo               #+#    #+#             */
-/*   Updated: 2024/11/13 16:32:49 by roo              ###   ########.fr       */
+/*   Updated: 2024/11/30 20:58:07 by rocfemia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	ft_putnbr_fd(int n, int fd, int result)
 /*#include <stdio.h>
 int   main()
 {
-	printf("\n%d", ft_putnbr_fd(-2147483648, 1, 0)); //con 2147483648 sale negativo, xq?
+	printf("\n%d", ft_putnbr_fd(-2147483648, 1, 0)); 
+	//con 2147483648 sale negativo, xq?
 	return (0);
 }*/
 /*#include <stdio.h>
