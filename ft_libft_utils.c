@@ -1,16 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_libft_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rocfemia <rocfemia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 03:01:35 by roo               #+#    #+#             */
-/*   Updated: 2024/11/30 20:58:07 by rocfemia         ###   ########.fr       */
+/*   Created: 2024/12/13 01:27:38 by rocfemia          #+#    #+#             */
+/*   Updated: 2024/12/13 01:31:49 by rocfemia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+
+int	ft_putchar_fd(char c, int fd, int result)
+{
+	write(fd, &c, 1);
+	result++;
+	return (result);
+}
 
 int	ft_putnbr_fd(int n, int fd, int result)
 {
@@ -32,33 +39,24 @@ int	ft_putnbr_fd(int n, int fd, int result)
 		result = ft_putchar_fd((n + '0'), fd, result);
 	return (result);
 }
-/*#include <stdio.h>
-int   main()
+
+int	ft_putstr_fd(char *s, int fd, int result)
 {
-	printf("\n%d", ft_putnbr_fd(-2147483648, 1, 0)); 
-	//con 2147483648 sale negativo, xq?
-	return (0);
-}*/
-/*#include <stdio.h>
-int main() 
+	if (s == NULL)
+	{
+		result = result + write(1, "(null)", 6);
+		return (result);
+	}
+	result = result + write(fd, s, ft_strlen(s));
+	return (result);
+}
+
+size_t	ft_strlen(const char *s)
 {
-    int result = 0;
-    
-    int num1 = 12345;
-    ft_putnbr_fd(num1, 1, &result);
-    printf("\nBytes escritos para num1: %d\n", result);
+	int	i;
 
-    result = 0;
-
-    int num2 = -9876;
-    ft_putnbr_fd(num2, 1, &result);
-    printf("\nBytes escritos para num2: %d\n", result);
-
-    result = 0;
-
-    int num3 = -2147483648;
-    ft_putnbr_fd(num3, 1, &result);
-    printf("\nBytes escritos para num3: %d\n", result);
-
-    return (0);
-}*/
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}

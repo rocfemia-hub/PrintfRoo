@@ -6,15 +6,13 @@
 /*   By: rocfemia <rocfemia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 19:54:56 by roo               #+#    #+#             */
-/*   Updated: 2024/11/30 20:10:36 by rocfemia         ###   ########.fr       */
+/*   Updated: 2024/12/13 01:28:25 by rocfemia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// una función solo para saber que tipo de coversión es
-// (saber que tipo de variable estás retornando)
-int	ft_conversions(va_list vargs, int i, int result)
+static int	ft_conversions(va_list vargs, int i, int result)
 {
 	if (i == 'c')
 		result = ft_putchar_fd(va_arg(vargs, int), 1, result);
